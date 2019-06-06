@@ -1,0 +1,66 @@
+<navigation-bar title="基本信息" show-home="{{false}}">
+  <view class="page-user-info">
+    <!-- 用户ID和邮箱 -->
+    <view class="module-lists">
+      <view class="line has-arrow" bindtap="toEdit" data-item="loginname">
+        <view class="main-feild">我的ID</view>
+        <!-- <view class="content"><input disabled="{{hasUpdated}}" type="text" placeholder="请输入用户ID" bindinput="updateInput" data-feild="loginname" value="{{user.loginname}}" /></view> -->
+        <view class="content">{{user.loginname}}</view>
+        <view class="more-icon"><text class="icon-cnode cnode-you"></text></view>
+      </view>
+      <view class="line has-arrow" bindtap="toEdit" data-item="email">
+        <view class="main-feild">邮箱</view>
+        <!-- <view class="content"><input disabled="{{hasUpdated}}" type="text" placeholder="请输入邮箱" bindinput="updateInput" data-feild="email" value="{{user.email}}" /></view> -->
+        <view class="content">{{user.email}}</view>
+        <view class="more-icon"><text class="icon-cnode cnode-you"></text></view>
+      </view>
+      <view class="line has-arrow" bindtap="toEdit" data-item="password">
+        <view class="main-feild">密码</view>
+        <view class="content"></view>
+        <view class="more-icon"><text class="icon-cnode cnode-you"></text></view>
+      </view>
+    </view>
+
+    <!-- 用户基本信息 -->
+    <view class="module-lists">
+      <view class="line">
+        <view class="main-feild">昵称</view>
+        <view class="content"><input disabled="{{hasUpdated}}" type="text" placeholder="请输入用户名" bindinput="updateInput" data-feild="name" value="{{user.name}}" /></view>
+      </view>
+      <view class="line">
+        <view class="main-feild">所在地</view>
+        <view class="content">
+          <picker mode="region" disabled="{{hasUpdated}}" bindchange="bindRegionChange" value="{{region}}">
+            <view class="picker" wx:if="{{region && region.length === 3}}">{{region[0]}},{{region[1]}},{{region[2]}}</view>
+            <view class="picker" wx:else>请选择地区</view>
+          </picker>
+        </view>
+      </view>
+      <view class="line">
+        <view class="main-feild">个人网站</view>
+        <view class="content"><input disabled="{{hasUpdated}}" type="text" placeholder="请输入网站地址" bindinput="updateInput" data-feild="url" value="{{user.url}}" /></view>
+      </view>
+      <view class="line">
+        <view class="main-feild">微博账号</view>
+        <view class="content"><input disabled="{{hasUpdated}}" type="text" placeholder="请输入微博" bindinput="updateInput" data-feild="weibo" value="{{user.weibo}}" /></view>
+      </view>
+      <view class="line area">
+        <view class="main-feild">个人简介</view>
+        <view class="content">
+          <textarea class="content-text" disabled="{{hasUpdated}}" placeholder="请输入个人简介" bindinput="updateInput" data-feild="signature" value="{{user.signature}}"></textarea>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{!hasUpdated}}" class="btn-block" bindtap="comfirmEdit">确认修改</view>
+  </view>
+</navigation-bar>
+
+<!-- const {
+      loginname,
+      name,
+      email,
+      url,
+      location,
+      weibo,
+      signature
+    }  -->

@@ -1,0 +1,89 @@
+<navigation-bar title="{{navTitle}}" bg-color="#eee" prevent-back="{{false}}" prevent-home="{{false}}">
+  <view class="page-article" >
+    <!-- 帖子不存啊 -->
+    <view wx:if="{{noDataMsg}}" class="page-no-data error">
+      <text class="icon-cnode cnode-wushuju"></text>
+      <text class="text-desc">- {{noDataMsg}} -</text>
+    </view>
+    <view class="loading-box" wx:if="{{!detail && !noDataMsg}}"><loading show="{{!detail}}" /></view>
+
+    <block wx:if="{{detail}}">
+      <view class="article-content">
+        <!-- 帖子标题 -->
+        <view class="article-title">{{detail.title}}</view>
+        <!-- 作者信息 -->
+        <view class="reply-content detail-author">
+          <view class="del-box" wx:if="{{userinfo && detail.author.loginname === userinfo.loginname}}" catchtap="delCurrent">
+            <text class="icon-cnode cnode-delete"></text>
+          </view>
+          <view class="reply-item">
+            <image class="avatar" src="{{detail.author.avatar_url}}" mode="aspectFill" data-url="{{detail.author.avatar_url}}" bindtap="previewImage" />
+            <view class="reply-inner">
+              <view class="loginname">作者: {{detail.author.name}}</view>
+              <view class="reply-time">
+                <block wx:if="{{detail.reply_count > 0}}">回复 {{detail.reply_count}} | </block>
+                <block wx:if="{{detail.visit_count > 0}}">浏览 {{detail.visit_count}}</block>
+              </view>
+              <view class="reply-time">发布时间: {{detail.createTime}}</view>
+              <view class="reply-time">最后回复: {{detail.lastReplyTime}}</view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 文章内容 -->
+        <wemark md="{{detail.content}}" link highlight tapable type="wemark"></wemark>
+
+        <!-- 用户操作 -->
+        <view class="assit-bar">
+          <view class="collection-box" bindtap="toggleCollect">
+            <view class="btn-collection {{detail.is_collect ? 'active' : ''}}"><text class="icon-cnode cnode-mbri-magic-stick"></text></view>
+            <text class="desc-text {{detail.is_collect ? 'active' : ''}}">{{ detail.is_collect ? '已收藏' : '点击收藏' }}</text>
+          </view >
+          <view class="collection-box" bindtap="toReply" data-type="replyDetail" wx:if="{{publishBtnStatus}}">
+            <view class="btn-collection"><text class="icon-cnode cnode-fabiaozhuti"></text></view>
+            <text class="desc-text">我来评论</text>
+          </view >
+          <view class="collection-box">
+            <view class="btn-collection"><text class="icon-cnode cnode-mbri-share"></text></view>
+            <text class="desc-text">分享好友</text>
+            <button class="btn-share" open-type="share">分享好友</button>
+          </view >
+        </view>
+      </view>
+      <!-- 评论模块 -->
+      <view class="reply-title">评论列表</view>
+      <view class="reply-content">
+        <!-- 无数据 -->
+        <view wx:if="{{detail.replies.length === 0}}" class="page-no-data">
+          <text class="icon-cnode cnode-wushuju"></text>
+          <text class="text-desc">- 暂无评论 -</text>
+        </view>
+        <block wx:else>
+           <view class="reply-item" wx:for="{{detail.replies}}" wx:key="{{index}}" wx:for-item="reply">
+            <image class="avatar" src="{{reply.author.avatar_url}}" mode="aspectFill" data-url="{{reply.author.avatar_url}}" bindtap="previewImage" />
+            <view class="reply-inner" >
+              <view class="loginname">{{reply.author.name}}</view>
+              <wemark md="{{reply.content}}" highlight tapable type="wemark"></wemark>
+              <view class="operate-box">
+                <view class="reply-time">{{reply.createTime}}</view>
+                <view class="operate-btns">
+                  <!-- <view class="reply-btn"
+                    catchtap="addStar"
+                    data-replyid="{{reply.id}}"><text class="icon-cnode cnode-good"></text>点赞</view> -->
+                  <view class="reply-btn" wx:if="{{publishBtnStatus}}"
+                    catchtap="toReply"
+                    data-type="replyComment"
+                    data-replyid="{{reply.id}}"
+                    data-preauthor="{{reply.author.name}}"><text class="icon-cnode cnode-fabiaozhuti"></text>回复</view>
+                  <view class="reply-btn" wx:if="{{userinfo && reply.author.loginname === userinfo.loginname}}"
+                    catchtap="delReply"
+                    data-replyid="{{reply.id}}"><text class="icon-cnode cnode-delete"></text>删除</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+  </view>
+</navigation-bar>

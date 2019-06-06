@@ -1,0 +1,40 @@
+<navigation-bar title="{{navTitle}}" bg-color="#FFFFFF">
+  <view class="post-page">
+    <block wx:if="{{pageType === 'post'}}">
+      <!-- 选择版块 -->
+      <view class="title">
+        <view class="title-text">分类：</view>
+        <view class="class-text" bindtap="changeTab" >
+          {{tabName}} <image class="class-icon" src="../../image/select/select-aorrow.png" />
+        </view>
+      </view>
+
+      <!-- 帖子标题 -->
+      <view class="title">
+        <view class="title-text">标题：</view>
+        <input class="title-input" placeholder="请输入标题(10以上)..."  placeholder-class="input-text"
+          data-field="title"
+          bindinput="getTitle"/>
+      </view>
+    </block>
+
+    <!-- 帖子内容 -->
+    <view class="content {{contentFocus ? 'focus' : ''}}">
+      <textarea class="content-input" maxlength="-1" placeholder="请输入{{navTitle}}内容..." value=""
+        data-field="content"
+        bindinput="getContent"
+        bindfocus="handleContentFocus"
+        bindblur="handleContentBlur"/>
+    </view>
+
+    <!-- 上传图片 -->
+    <view class="add-box" >
+      <view class="add-pic" wx:for="{{imageUrls}}" wx:key="{{index}}" wx:if="{{imageUrls && imageUrls.length > 0}}">
+        <image src="{{item}}" mode="aspectFill" bindtap="viewPhoto" data-index="{{index}}" />
+        <view class="btn-del" catchtap="delPhoto" data-index="{{index}}"><text class="icon-cnode cnode-close2"></text></view>
+      </view>
+      <view class="add-pic add" bindtap="addImage"></view>
+    </view>
+    <view class="button" bindtap="postArticle" >确定</view>
+  </view>
+</navigation-bar>

@@ -1,0 +1,206 @@
+// out: detail.wxss
+page {
+  background: #fff;
+}
+.page-article {
+  .loading-box {
+    padding-top: 120rpx;
+  }
+
+  // 文章主体(内容 + 标题)
+  .article-content {
+    font-weight: 400;
+    padding: 20rpx 40rpx;
+
+    .article-title {
+      font-weight: 500;
+      font-size: 38rpx;
+    }
+  }
+
+  // 回复标题
+  .reply-title {
+    background: #eee;
+    padding: 20rpx;
+  }
+
+  // 回复内容
+  .reply-content {
+    position: relative;
+    font-weight: 400;
+
+    .del-box {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 80rpx;
+      width: 80rpx;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9;
+      .icon-cnode {
+        font-weight: 700;
+        // color: #DDD;
+        color: #f00;
+        font-size: 36rpx;
+      }
+    }
+
+    &.detail-author {
+      margin-top: 20rpx;
+      opacity: 0.85;
+      .reply-item {
+        border: none;
+        padding: 20rpx 0 20rpx 110rpx;
+      }
+      .avatar {
+        left: 0;
+      }
+    }
+
+    .reply-item {
+      border-bottom: 1px solid #eee;
+      position: relative;
+      min-height: 180rpx;
+      width: 100%;
+      padding: 20rpx 30rpx 20rpx 130rpx;
+    }
+  }
+
+  // 回复内容列表项(每条回复)
+  .reply-item {
+    .avatar {
+      display: block;
+      width: 80rpx;
+      height: 80rpx;
+      position: absolute;
+      left: 20rpx;
+      top: 30rpx;
+      border-radius: 8rpx;
+      background: #eee;
+    }
+
+    .reply-inner {
+      .loginname {
+        font-weight: 700;
+        color: #535A79;
+      }
+
+      .reply-time {
+        // padding-top: 10rpx;
+        font-weight: 700;
+        color: #999;
+        font-size: 28rpx;
+      }
+      .reply-btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #999;
+        font-weight: 700;
+        font-size: 28rpx;
+        .icon-cnode {
+          font-size: 36rpx;
+          padding-right: 4rpx;
+        }
+      }
+      .operate-box {
+        padding-top: 5rpx;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .operate-btns {
+          display: flex;
+          justify-content: flex-end;
+        }
+        .reply-btn {
+          margin-left: 22rpx;
+        }
+      }
+    }
+  }
+
+
+  // 没有更多数据
+  .no-data {
+    height: 260rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20rpx;
+    color: #666;
+    font-size: 28rpx;
+  }
+
+
+  // 收藏
+  .assit-bar {
+    padding: 30rpx 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .collection-box {
+      height: 160rpx;
+      width: 160rpx;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      transition: all .2s;
+      position: relative;
+      .btn-collection {
+        height: 100rpx;
+        width: 100rpx;
+        // background: #eee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        .icon-cnode {
+          font-weight: 700;
+          font-size: 46rpx;
+        }
+        &.active {
+          // color: #eee;
+          // background: #026e00;
+          color: #026e00;
+          font-weight: 700;
+          .icon-cnode {
+            font-size: 50rpx;
+          }
+        }
+      }
+      .desc-text {
+        display: block;
+        // height: 60rpx;
+        // line-height: 60rpx;
+        font-size: 26rpx;
+        &.active {
+          color: #026e00;
+        }
+      }
+      .btn-share {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+      }
+    }
+  }
+}
+
+
+// 快速回复
+.page-float-tip {
+  // color: #666;
+  .icon-cnode {
+    color: #026e00;
+    font-size: 50rpx;
+    font-weight: 700;
+  }
+}

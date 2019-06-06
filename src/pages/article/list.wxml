@@ -1,0 +1,48 @@
+<navigation-bar
+  title="{{tabName === 'news' ? '教练快讯' : tabName}}"
+  bindtitletap="{{tabName === 'news' ? 'noop' : (opacity === 1 ? 'changeTab' : 'noop')}}"
+  bg-color="#eee"
+  opacity="{{tabName === 'news' ? 1 : opacity}}"
+  show-home="{{tabName === 'news' ? true : false}}">
+
+  <view class="page-list" bindtouchstart="touchStart" bindtouchend="touchEnd">
+    <!-- 分类tab && 内容列表 -->
+    <view class="list-tap" style="height: {{topHeight}}px; opacity: {{1 - opacity}};" wx:if="{{tabName && tabName !== 'news'}}" catchtap="changeTab">
+      <view class="tab-info">
+        <view class="text-cont">{{tabName}}</view>
+        <view class="click-tip">(点击可切换分类)</view>
+      </view>
+    </view>
+
+    <view class="list-item {{isRealScroll ? 'animate' : ''}}" wx:for="{{list}}" wx:key="{{index}}" data-item="{{item}}" bindtap="toDetail">
+      <view class="content">
+        <block wx:if="{{tabName === '全部分类'}}">{{item.top ? '[置顶]' : ''}} {{item.tabText ? '[' + item.tabText + ']' : ''}} </block>
+        {{item.title}}
+      </view>
+      <wemark md="{{item.summary}}" type="wemark"></wemark>
+      <view class="foot-info">
+        <view class="field">
+          <block wx:if="{{item.reply_count > 0}}"><text class="text-strong">{{item.reply_count}}评论</text> / </block>
+          <block wx:if="{{item.visit_count > 0}}">{{item.visit_count}}浏览</block>
+        </view>
+        <view class="field">{{item.date}}发布</view>
+      </view>
+    </view>
+
+    <!-- loading -->
+    <view wx:if="{{!list || list.length === 0}}" class="no-data">~~ 暂无数据 ~~</view>
+    <block wx:else>
+      <view wx:if="{{loadingStatus || !noMoreData}}"><loading show /></view>
+      <view wx:if="{{noMoreData}}" class="no-data">~~ 我是有底线的哦 ~~</view>
+    </block>
+  </view>
+</navigation-bar>
+
+<view class="page-float-tip" catchtap="toHome">
+  <text class="icon-cnode cnode-home"></text>
+</view>
+
+<!-- 快速发帖 -->
+<view class="page-float-tip publish" catchtap="toPost" wx:if="{{publishBtnStatus}}">
+  <text class="icon-cnode cnode-fabiao"></text>
+</view>

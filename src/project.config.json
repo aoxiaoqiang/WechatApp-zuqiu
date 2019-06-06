@@ -1,0 +1,111 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false,
+		"uglifyFileName": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.2.0",
+	"appid": "wx972a313f9d375b68",
+	"projectname": "zuqiujiaolian",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 8,
+			"list": [
+				{
+					"id": 0,
+					"name": "+ 详情",
+					"pathName": "pages/article/detail",
+					"query": "id=5cbf4198d78ea0677afe3c19",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "+ home",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "+ list",
+					"pathName": "pages/article/list",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "square",
+					"pathName": "pages/webview/webview",
+					"query": "jumpUrl=https%3A%2F%2Fzuqiuxunlian.com%2Fmedia%2Ftraining-20171123%2F%3F%3F%3F",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/personal/personal",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "+ 用户信息",
+					"pathName": "pages/personal/info",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "发布页面",
+					"pathName": "pages/article/post",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "+ llgin",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "about",
+					"pathName": "pages/about/about",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}
